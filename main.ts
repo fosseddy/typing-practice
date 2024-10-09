@@ -32,12 +32,11 @@ function charSetState(c: Char, s: CharState): void {
     let fg = charStateColor[s];
     let bg = "white";
 
-    c.state = s;
-
-    if (c.state === CharState.INCORRECT) {
+    if (s === CharState.INCORRECT) {
         [fg, bg] = [bg, fg] // swap
     }
 
+    c.state = s;
     c.html.style.color = fg;
     c.html.style.background = bg;
 }
