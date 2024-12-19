@@ -1,5 +1,5 @@
 const enum CharState {
-    NOT_ENTERED,
+    EMPTY,
     CORRECT,
     INCORRECT
 }
@@ -23,7 +23,7 @@ interface Text_ { // _ to avoid collision with built in Text type
 }
 
 const charStateColor: Record<CharState, string> = {
-    [CharState.NOT_ENTERED]: "gray",
+    [CharState.EMPTY]: "gray",
     [CharState.CORRECT]: "black",
     [CharState.INCORRECT]: "red"
 };
@@ -59,7 +59,7 @@ function textInit(s: string): Text_ {
         const char: Char = {
             symbol: s[i]!,
             special: null,
-            state: CharState.NOT_ENTERED,
+            state: CharState.EMPTY,
             html: document.createElement("span")
         };
 
@@ -107,7 +107,7 @@ function textBack(t: Text_): void {
 
     const char = t.chars[--t.cursor.value]!;
 
-    charSetState(char, CharState.NOT_ENTERED);
+    charSetState(char, CharState.EMPTY);
     text.cursor.html.textContent = charSymbol(char);
     char.html.before(text.cursor.html);
 }
